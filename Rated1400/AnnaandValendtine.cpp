@@ -201,14 +201,14 @@ using namespace std;
 #define mp make_pair
 #define mii map<ll, ll>
 #define pii pair<ll, ll>
-#define vll vector<ll>
+#define vi vector<ll>
 #define vvi vector<vi>
 #define vb vector<bool>
 #define vpii vector<pii>
 #define pairMinHeap priority_queue<pii, vpii, greater<pii>>
 #define all(x) (x).begin(), (x).end()
-#define FOR(i, a, b) for (ll i = a; i < b; i++)
-#define RFOR(i, a, b) for (ll i = a; i > b; i--)
+#define ITR(i, a, b) for (ll i = a; i < b; i++)
+#define REV(i, a, b) for (ll i = a; i > b; i--)
 #define MOD (ll)(1e9 + 7)
 #define mod (ll)998244353F
 #define INF (ll) INT64_MAX
@@ -271,63 +271,6 @@ void solve(ll t)
 {
     ll n;
     cin >> n;
-    vll a(n);
-    vll b(n);
-    ll m = 1;
-    FOR(i, 0, n)
-    cin >> a[i];
-    FOR(i, 0, n)
-    cin >> b[i];
-
-    map<ll, ll> ma;
-    map<ll, ll> mb;
-    ll c = 1;
-    FOR(i, 1, n)
-    {
-        if (a[i] == a[i - 1])
-        {
-            c++;
-        }
-        else
-        {
-            ma[a[i - 1]] = max(ma[a[i - 1]], c);
-            c = 1;
-        }
-    }
-    ma[a[n - 1]] = max(ma[a[n - 1]], c);
-    c = 1;
-
-    FOR(i, 1, n)
-    {
-        if (b[i] == b[i - 1])
-        {
-            c++;
-        }
-        else
-        {
-            mb[b[i - 1]] = max(mb[b[i - 1]], c);
-            c = 1;
-        }
-    }
-    mb[b[n - 1]] = max(mb[b[n - 1]], c);
-
-    for (auto i : mb)
-    {
-        if (ma[i.first] > 0)
-        {
-            ma[i.first] = ma[i.first] + i.second;
-        }
-        else
-        {
-            ma[i.first] = i.second;
-        }
-    }
-
-    for (auto i : ma)
-    {
-        m = max(m, i.second);
-    }
-    cout << m << endl;
 }
 int main()
 {
@@ -338,9 +281,10 @@ int main()
 #endif
     ll t;
     cin >> t;
-    FOR(T, 1, t + 1)
+    ITR(T, 1, t + 1)
     {
         solve(T);
+        cout << endl;
     }
     return 0;
 }

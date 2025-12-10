@@ -201,7 +201,7 @@ using namespace std;
 #define mp make_pair
 #define mii map<ll, ll>
 #define pii pair<ll, ll>
-#define vi vector<ll>
+#define vll vector<ll>
 #define vvi vector<vi>
 #define vb vector<bool>
 #define vpii vector<pii>
@@ -267,36 +267,33 @@ bool cmps(pii &a, pii &b)
 {
     return a.ss < b.ss;
 }
-void solve(ll t)
+void solve(ll z)
 {
     ll n;
     cin >> n;
-    vi v;
-    for (int i = 0; i < n; i++)
+    vll m(n);
+    ll mi = INF;
+    for (int j = 0; j < n; j++)
     {
-        ll x;
-        cin >> x;
-        vi temp;
-        for (int j = 0; j < x; j++)
+        ll t;
+        cin >> t;
+        vll a(t);
+        for (int i = 0; i < t; i++)
         {
-            ll y;
-            cin >> y;
-            temp.pb(y);
+            cin >> a[i];
+            mi = min(a[i], mi);
         }
-        sort(all(temp));
-        v.pb(temp[0]);
-        v.pb(temp[1]);
+        sort(a.begin(), a.end());
+        m[j] = a[1];
     }
-    sort(all(v));
-    ll ans = v[0];
-    for (auto l : v)
-        cout << (l);
-    for (int i = 0; i < n - 1; i++)
+    sort(m.begin(), m.end());
+    ll ans = mi;
+    for (int i = 1; i < n; i++)
     {
-        ans += v[2 * n - i - 1];
+        ans += m[i];
     }
 
-    // cout << ans;
+    cout << ans << endl;
 }
 int main()
 {
@@ -310,7 +307,6 @@ int main()
     ITR(T, 1, t + 1)
     {
         solve(T);
-        cout << endl;
     }
     return 0;
 }
